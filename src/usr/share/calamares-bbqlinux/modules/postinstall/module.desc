@@ -1,5 +1,0 @@
----
-type:       "job"
-name:       "postinstall"
-interface:  "python"
-script:     "main.py"

@@ -1,11 +1,10 @@
-#!/usr/bin/env xdg-open
 [Desktop Entry]
 Version=1.0
+Type=Application
 Name=Install BBQLinux
 GenericName=Live Installer
 Comment=Install BBQLinux to harddisk
 Exec=gksudo /usr/bin/calamares
 Icon=calamares_bbqlinux_icon_blue_48x48
-Terminal=False
-Type=Application
-Categories=System;
+Terminal=false
+StartupNotify=false

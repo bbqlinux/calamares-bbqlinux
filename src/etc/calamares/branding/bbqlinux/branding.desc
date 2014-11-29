@@ -1,0 +1,18 @@
+---
+componentName:  bbqlinux
+
+strings:
+    productName:         BBQLinux
+    shortProductName:    BBQLinux
+    version:             Rolling
+    shortVersion:        Rolling
+    versionedName:       BBQLinux Rolling Release
+    shortVersionedName:  BBQLinux
+    bootloaderEntryName: BBQLinux
+
+images:
+    productLogo:         "bbqlinux_icon_blue_64x64.png"
+    productIcon:         "bbqlinux_icon_blue_64x64.png"
+
+slideshow:
+    - "bbqlinux_icon_blue_64x64.png"
