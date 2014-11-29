@@ -67,9 +67,6 @@ def cleanup():
     chroot_call(['rm', '-f', '/etc/lightdm/lightdm.conf'])
     chroot_call(['mv', '-f', '/etc/lightdm/lightdm.conf.new', '/etc/lightdm/lightdm.conf'])
 
-    # Remove calamares
-    chroot_call(['pacman', '-R', '--noconfirm', 'calamares-bbqlinux', 'calamares'])
-
 def run():
     cleanup()
     return None
