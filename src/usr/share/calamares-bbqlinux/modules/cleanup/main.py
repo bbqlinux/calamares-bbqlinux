@@ -67,6 +67,60 @@ def cleanup():
     chroot_call(['rm', '-f', '/etc/lightdm/lightdm.conf'])
     chroot_call(['mv', '-f', '/etc/lightdm/lightdm.conf.new', '/etc/lightdm/lightdm.conf'])
 
+    # Localize Firefox and Thunderbird
+    locale = libcalamares.globalstorage.value("lcLocale")
+    if not locale:
+        locale = 'en_GB'
+
+    if (locale.startswith('bn_') == True):
+        i18n = "bn-bd";
+    elif (locale.startswith('en_US') == True):
+        i18n = "en-us"
+    elif (locale.startswith('en_') == True):
+        i18n = "en-gb"
+    elif (locale.startswith('es_AR') == True):
+        i18n = "es-ar"
+    elif (locale.startswith('es_') == True):
+        i18n = "es-es"
+    elif (locale.startswith('fy_') == True):
+        i18n = "fy-nl"
+    elif (locale.startswith('ga_') == True):
+        i18n = "ga-ie"
+    elif (locale.startswith('hy_') == True):
+        i18n = "hy-am"
+    elif (locale.startswith('nb_') == True):
+        i18n = "nb-no"  
+    elif (locale.startswith('nn_') == True):
+        i18n = "nn-no"
+    elif (locale.startswith('pa_') == True):
+        i18n = "pa-in"
+    elif (locale.startswith('pa_') == True):
+        i18n = "pa-in"
+    elif (locale.startswith('pt_BR') == True):
+        i18n = "pt-br"
+    elif (locale.startswith('pt_') == True):
+        i18n = "pt-pt"
+    elif (locale.startswith('sv_') == True):
+        i18n = "sv-se"
+    elif (locale.startswith('ta_') == True):
+        i18n = "ta-lk"
+    elif (locale.startswith('zh_TW') == True):
+        i18n = "zh-tw"
+    elif (locale.startswith('zh_') == True):
+        i18n = "zh-cn"
+    else:
+        lc = locale.split('_')[0];
+        if (len(lc) > 2):
+            i18n = 'en-gb'
+        else:
+            i18n = lc
+
+    if (len(i18n) < 2):
+        i18n = 'en-gb'
+
+    chroot_call(['pacman', '-S', '--noconfirm', '--force', 'firefox-i18n-%s'] % i18n)
+    chroot_call(['pacman', '-S', '--noconfirm', '--force', 'thunderbird-i18n-%s'] % i18n)
+
 def run():
     cleanup()
     return None
