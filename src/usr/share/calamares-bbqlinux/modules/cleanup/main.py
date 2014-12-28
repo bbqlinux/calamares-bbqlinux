@@ -109,17 +109,18 @@ def cleanup():
     elif (locale.startswith('zh_') == True):
         i18n = "zh-cn"
     else:
-        lc = locale.split('_')[0];
-        if (len(lc) > 2):
+        language_code = locale.split('_')[0]
+
+        if (len(language_code) > 2):
             i18n = 'en-gb'
         else:
-            i18n = lc
+            i18n = language_code
 
     if (len(i18n) < 2):
         i18n = 'en-gb'
 
-    chroot_call(['pacman', '-S', '--noconfirm', '--force', 'firefox-i18n-%s'] % i18n)
-    chroot_call(['pacman', '-S', '--noconfirm', '--force', 'thunderbird-i18n-%s'] % i18n)
+    chroot_call(['pacman', '-S', '--noconfirm', '--force', 'firefox-i18n-%s' % i18n])
+    chroot_call(['pacman', '-S', '--noconfirm', '--force', 'thunderbird-i18n-%s' % i18n])
 
 def run():
     cleanup()
