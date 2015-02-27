@@ -7,7 +7,7 @@ strings:
     version:             Rolling
     shortVersion:        Rolling
     versionedName:       BBQLinux Rolling Release
-    shortVersionedName:  BBQLinux
+    shortVersionedName:  BBQLinux Rolling
     bootloaderEntryName: BBQLinux
 
 images:
