@@ -35,7 +35,7 @@ Presentation
         Image {
             id: background
             source: "bbqlinux_wallpaper_30.jpg"
-            width: 200; height: 200
+            width: 533; height: 300
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent
         }

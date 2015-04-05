@@ -9,8 +9,10 @@ strings:
     versionedName:       BBQLinux Rolling Release
     shortVersionedName:  BBQLinux Rolling
     bootloaderEntryName: BBQLinux
-    productURL:          http://www.bbqlinux.org
-    urlText:             BBQLinux Website
+    productUrl:          http://www.bbqlinux.org
+    supportUrl:          http://bbs.bbqlinux.org
+    knownIssuesUrl:      http://bbs.bbqlinux.org/viewforum.php?id=15
+    releaseNotesUrl:     http://bbs.bbqlinux.org/viewforum.php?id=7
 
 images:
     productLogo:         "bbqlinux_icon_blue_64x64.png"
