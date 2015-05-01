@@ -31,21 +31,42 @@ Presentation
     }
     
     Slide {
-
         Image {
-            id: background
-            source: "bbqlinux_wallpaper_30.jpg"
-            width: 533; height: 300
+            id: slide1
+            source: "slide_1.jpg"
+            width: 586; height: 344
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent
         }
-        Text {
-            anchors.horizontalCenter: background.horizontalCenter
-            anchors.top: background.bottom
-            text: "Welcome to BBQLinux<br/>"
-            wrapMode: Text.WordWrap
-            width: root.width
-            horizontalAlignment: Text.Center
+    }
+
+    Slide {
+        Image {
+            id: slide2
+            source: "slide_2.jpg"
+            width: 586; height: 344
+            fillMode: Image.PreserveAspectFit
+            anchors.centerIn: parent
+        }
+    }
+
+    Slide {
+        Image {
+            id: slide3
+            source: "slide_3.jpg"
+            width: 586; height: 344
+            fillMode: Image.PreserveAspectFit
+            anchors.centerIn: parent
+        }
+    }
+
+    Slide {
+        Image {
+            id: slide4
+            source: "slide_4.jpg"
+            width: 586; height: 344
+            fillMode: Image.PreserveAspectFit
+            anchors.centerIn: parent
         }
     }
 }
