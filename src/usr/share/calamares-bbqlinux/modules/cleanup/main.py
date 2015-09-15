@@ -30,8 +30,6 @@ def cleanup():
     # Remove pacman init service
     if(os.path.exists("%s/etc/systemd/system/etc-pacman.d-gnupg.mount" % root_mount_point)):
         chroot_call(['rm', '-f', '/etc/systemd/system/etc-pacman.d-gnupg.mount'])
-    if(os.path.exists("%s/etc/systemd/system/pacman-init.service" % root_mount_point)):
-        chroot_call(['rm', '-f', '/etc/systemd/system/pacman-init.service'])
 
     # Init pacman keyring
     check_chroot_call(['rm', '-rf', '/etc/pacman.d/gnupg'])
@@ -41,10 +39,6 @@ def cleanup():
     chroot_call(['pacman-key', '--refresh-keys'])
 
     # Remove liveuser service
-    if(os.path.exists("%s/etc/systemd/system/prepare_livesystem.service" % root_mount_point)):
-        chroot_call(['rm', '-f', '/etc/systemd/system/prepare_livesystem.service'])
-    if(os.path.exists("%s/etc/systemd/system/multi-user.target.wants/prepare_livesystem.service" % root_mount_point)):
-        chroot_call(['rm', '-f', '/etc/systemd/system/multi-user.target.wants/prepare_livesystem.service'])
     if(os.path.exists("%s/usr/bin/prepare_livesystem" % root_mount_point)):
         chroot_call(['rm', '-f', '/usr/bin/prepare_livesystem'])
 
