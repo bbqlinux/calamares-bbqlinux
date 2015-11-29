@@ -21,26 +21,35 @@ import subprocess
 
 import libcalamares
 
-from libcalamares.utils import chroot_call
-from libcalamares.utils import check_chroot_call
-
 def cleanup():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 
     # Remove pacman init service
     if(os.path.exists("%s/etc/systemd/system/etc-pacman.d-gnupg.mount" % root_mount_point)):
-        chroot_call(['rm', '-f', '/etc/systemd/system/etc-pacman.d-gnupg.mount'])
+        libcalamares.utils.target_env_call(['rm', '-f', '/etc/systemd/system/etc-pacman.d-gnupg.mount'])
 
     # Init pacman keyring
-    check_chroot_call(['rm', '-rf', '/etc/pacman.d/gnupg'])
-    check_chroot_call(['pacman-key', '--init'])
-    check_chroot_call(['pacman-key', '--populate', 'archlinux'])
-    check_chroot_call(['pacman-key', '--populate', 'bbqlinux'])
-    chroot_call(['pacman-key', '--refresh-keys'])
+    libcalamares.utils.target_env_call(['rm', '-rf', '/etc/pacman.d/gnupg'])
+
+    ec = libcalamares.utils.target_env_call(['pacman-key', '--init'])
+    if ec != 0:
+        libcalamares.utils.debug("Failed to init pacman keyring")
+
+    ec = libcalamares.utils.target_env_call(['pacman-key', '--populate', 'archlinux'])
+    if ec != 0:
+        libcalamares.utils.debug("Failed to populate archlinux keyring")
+
+    ec = libcalamares.utils.target_env_call(['pacman-key', '--populate', 'bbqlinux'])
+    if ec != 0:
+        libcalamares.utils.debug("Failed to populate bbqlinux keyring")
+
+    ec = libcalamares.utils.target_env_call(['pacman-key', '--refresh-keys'])
+    if ec != 0:
+        libcalamares.utils.debug("Failed to refresh keys")
 
     # Remove liveuser service
     if(os.path.exists("%s/usr/bin/prepare_livesystem" % root_mount_point)):
-        chroot_call(['rm', '-f', '/usr/bin/prepare_livesystem'])
+        libcalamares.utils.target_env_call(['rm', '-f', '/usr/bin/prepare_livesystem'])
 
     # Modify lightdm config
     lightdmconfig = open("%s/etc/lightdm/lightdm.conf" % root_mount_point, "r")
@@ -58,8 +67,8 @@ def cleanup():
     lightdmconfig.close()
     newlightdmconfig.close()
 
-    chroot_call(['rm', '-f', '/etc/lightdm/lightdm.conf'])
-    chroot_call(['mv', '-f', '/etc/lightdm/lightdm.conf.new', '/etc/lightdm/lightdm.conf'])
+    libcalamares.utils.target_env_call(['rm', '-f', '/etc/lightdm/lightdm.conf'])
+    libcalamares.utils.target_env_call(['mv', '-f', '/etc/lightdm/lightdm.conf.new', '/etc/lightdm/lightdm.conf'])
 
     # Localize Firefox and Thunderbird
     locale = libcalamares.globalstorage.value("lcLocale")
@@ -113,8 +122,13 @@ def cleanup():
     if (len(i18n) < 2):
         i18n = 'en-gb'
 
-    chroot_call(['pacman', '-S', '--noconfirm', '--force', 'firefox-i18n-%s' % i18n])
-    chroot_call(['pacman', '-S', '--noconfirm', '--force', 'thunderbird-i18n-%s' % i18n])
+    ec = libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', '--force', 'firefox-i18n-%s' % i18n])
+    if ec != 0:
+        libcalamares.utils.debug("Failed to localize firefox")
+
+    ec = libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', '--force', 'thunderbird-i18n-%s' % i18n])
+    if ec != 0:
+        libcalamares.utils.debug("Failed to localize thunderbird")
 
 def run():
     cleanup()

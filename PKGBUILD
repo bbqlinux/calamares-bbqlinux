@@ -1,8 +1,8 @@
 # Maintainer: Daniel Hillenbrand <codeworkx [at] bbqlinux [dot] org>
 
 pkgname=calamares-bbqlinux
-pkgver=1.1.4
-pkgrel=0
+pkgver=2.0.0
+pkgrel=1
 pkgdesc="BBQLinux configuration for the calamares installer"
 arch=('any')
 url="https://github.com/bbqlinux/calamares-bbqlinux"
@@ -13,9 +13,8 @@ package() {
   cd "$pkgdir"
 
   mkdir -p usr
-  mkdir -p etc/sudoers.d
 
-  cp -R "$srcdir/etc" etc
+  cp -R "$srcdir/etc/" etc
   cp -R "$srcdir/usr/share" usr/share
 
   install -Dm440 "$srcdir/etc/sudoers.d/calamares" etc/sudoers.d/calamares
