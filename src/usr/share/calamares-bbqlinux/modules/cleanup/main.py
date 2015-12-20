@@ -24,6 +24,11 @@ import libcalamares
 def cleanup():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 
+    # this is needed to use networking within the chroot
+    ec = libcalamares.utils.target_env_call(['cp', '-f', '/etc/resolv.conf', '%s/etc/resolv.conf' % root_mount_point])
+    if ec != 0:
+        libcalamares.utils.debug("Failed to copy resolv.conf")
+
     # Remove pacman init service
     if(os.path.exists("%s/etc/systemd/system/etc-pacman.d-gnupg.mount" % root_mount_point)):
         libcalamares.utils.target_env_call(['rm', '-f', '/etc/systemd/system/etc-pacman.d-gnupg.mount'])
