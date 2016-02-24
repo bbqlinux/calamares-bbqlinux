@@ -1,7 +1,7 @@
 # Maintainer: Daniel Hillenbrand <codeworkx [at] bbqlinux [dot] org>
 
 pkgname=calamares-bbqlinux
-pkgver=2.0.1
+pkgver=2.0.2
 pkgrel=1
 pkgdesc="BBQLinux configuration for the calamares installer"
 arch=('any')
