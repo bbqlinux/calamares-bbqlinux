@@ -2,7 +2,7 @@
 
 pkgname=calamares-bbqlinux
 pkgver=2.4.5
-pkgrel=2
+pkgrel=3
 pkgdesc="BBQLinux configuration for the calamares installer"
 arch=('any')
 url="https://github.com/bbqlinux/calamares-bbqlinux"
