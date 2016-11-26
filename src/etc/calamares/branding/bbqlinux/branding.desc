@@ -17,6 +17,7 @@ strings:
 images:
     productLogo:         "bbqlinux_icon_blue_64x64.png"
     productIcon:         "bbqlinux_icon_blue_64x64.png"
+    productWelcome:      "languages.png"
 
 slideshow:               "show.qml"
 
