@@ -128,7 +128,7 @@ def cleanup():
         i18n = 'en-gb'
 
     # Try to update pacman database
-    ec = libcalamares.utils.target_env_call(['pacman', '-Sy', '--noconfirm', '--force')
+    ec = libcalamares.utils.target_env_call(['pacman', '-Sy', '--noconfirm', '--force'])
     if ec != 0:
         libcalamares.utils.debug("Failed to update pacman database")
 
