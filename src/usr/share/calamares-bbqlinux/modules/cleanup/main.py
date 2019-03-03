@@ -127,10 +127,17 @@ def cleanup():
     if (len(i18n) < 2):
         i18n = 'en-gb'
 
+    # Try to update pacman database
+    ec = libcalamares.utils.target_env_call(['pacman', '-Sy', '--noconfirm', '--force')
+    if ec != 0:
+        libcalamares.utils.debug("Failed to update pacman database")
+
+    # Localize firefox
     ec = libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', '--force', 'firefox-i18n-%s' % i18n])
     if ec != 0:
         libcalamares.utils.debug("Failed to localize firefox")
 
+    # Localize thunderbird
     ec = libcalamares.utils.target_env_call(['pacman', '-S', '--noconfirm', '--force', 'thunderbird-i18n-%s' % i18n])
     if ec != 0:
         libcalamares.utils.debug("Failed to localize thunderbird")
